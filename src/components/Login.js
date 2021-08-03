@@ -1,14 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { Form, Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { signup } = useAuth();
+    const { login } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const history = useHistory();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -16,9 +17,10 @@ export default function Login() {
         try {
             setError('');
             setLoading(true);
-            await signup(emailRef.current.value, passwordRef.current.value);
+            await login(emailRef.current.value, passwordRef.current.value);
+            history.push('/');
         } catch {
-            setError('Failed to create an account')
+            setError('Failed to sign in')
         }
         setLoading(false);
     }
