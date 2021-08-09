@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFolderPlus } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ export default function AddFolderButton({ currentFolder }) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const { currentUser } = useAuth();
+    const folderName = useRef();
     
     function openModal() {
         setOpen(true);
@@ -42,16 +43,17 @@ export default function AddFolderButton({ currentFolder }) {
             <Button onClick={openModal} variant='outline-success' size='sm'>
                 <FontAwesomeIcon icon={faFolderPlus} />  
             </Button>
-            <Modal show={open} onHide={closeModal}>
+            <Modal show={open} onHide={closeModal} animation={false}>
             <Form onSubmit={handleSubmit}>
                 <Modal.Body>
                     <Form.Group>
                         <Form.Label>Folder Name</Form.Label>
                         <Form.Control 
                         type='text'
+                        ref={folderName}
                         required
                         value={name}
-                        onChange={e => setName(e.target.value)}
+                        onChange={() => setName(folderName.current.value)}
                         />
                     </Form.Group>
                 </Modal.Body>

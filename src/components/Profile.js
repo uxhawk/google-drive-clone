@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CenteredContainer from './authentication/CenteredContainer';
 
 export default function Dashboard() {
     const [error, setError] = useState('');
     const { currentUser, logout } = useAuth();
-    const history = useHistory();
+    // const history = useHistory();
     
     async function handleLogout() {
         setError('');
