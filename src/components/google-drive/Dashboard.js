@@ -4,44 +4,37 @@ import { useFolder } from '../../hooks/useFolder';
 import { Container } from 'react-bootstrap';
 import Folder from './Folder';
 import AddFolderButton from './AddFolderButton';
+import { useParams, useLocation } from 'react-router-dom';
+import FolderBreadcrumbs from './FolderBreadcrumbs';
 
 export default function Dashboard() {
-    const { folder, childFolders } = useFolder('2iCUL6pmxkN8YcRF9tfY');
+    const {folderId} = useParams();
+    const { state = { } } = useLocation();
+    const { folder, childFolders } = useFolder(folderId, state.folder);
     console.log(childFolders);
 
     return (
         <>
             <Navbar />
             <Container fluid className='p-4'>
-                <AddFolderButton currentFolder={folder} />   
+                <div className='d-flex align-items-center mb-3'>
+                    <FolderBreadcrumbs  currentFolder={folder}/>
+                    <AddFolderButton currentFolder={folder} />   
+                </div>
+                
                 {childFolders.length > 0 && (
                     <div className='d-flex flex-wrap'>
                         {childFolders.map(childFolder => (
                             <div
                                 key={childFolder.id}
                                 style={{ maxWidth: '250px' }}
-                                className='p-2'
+                                className='folder-link'
                             >
-                                <Folder folder={childFolder} />
+                                <Folder folder={childFolder} className='folder-link'/>
                             </div>
                         ))}
                     </div>
                 )}
-                
-                
-                {/* {childFolders.length > 0 && (
-                    <div className='d-flex flex-wrap'>
-                        {childFolders.map(childFolder => (
-                            <div
-                                key={childFolder.id}
-                                style={{ maxWidth: '250px' }}
-                                className='p-2'
-                            >
-                                <Folder folder={childFolder} />
-                            </div>
-                        ))}
-                    </div>
-                )}          */}
             </Container>
         </>
     )
