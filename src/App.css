@@ -5,3 +5,9 @@
 a {
     text-decoration: none;
 }
+
+.file-upload {
+    opacity: 0;
+    position: absolute;
+    left: -1000px
+}
