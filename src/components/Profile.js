@@ -3,6 +3,7 @@ import { Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import CenteredContainer from './authentication/CenteredContainer';
+import Navbar from '../components/google-drive/Navbar'
 
 export default function Dashboard() {
     const [error, setError] = useState('');
@@ -20,6 +21,8 @@ export default function Dashboard() {
     }
     
     return (
+        <>
+        <Navbar />
         <CenteredContainer>
             <Card>
                 <Card.Body>
@@ -33,6 +36,7 @@ export default function Dashboard() {
             <Button variant='link' onClick={handleLogout}>Sign Out</Button>
             </div> 
         </CenteredContainer>
+        </>
     )
     
 }

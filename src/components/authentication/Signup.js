@@ -8,7 +8,8 @@ export default function Signup() {
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmRef = useRef();
-    const { signup } = useAuth();
+    const displayNameRef = useRef();
+    const { signup, updateDisplayName } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const history = useHistory();
@@ -24,8 +25,13 @@ export default function Signup() {
         try {
             setError('');
             setLoading(true);
-            await signup(emailRef.current.value, passwordRef.current.value);
-            history.push('/');
+            signup(emailRef.current.value, passwordRef.current.value).then(() => {
+                updateDisplayName(displayNameRef.current.value).then(() => {
+                    history.push('/');
+                }).catch(e => {
+                    console.error(e);
+                })
+            });
         } catch {
             setError('Failed to create an account')
         }
@@ -39,19 +45,23 @@ export default function Signup() {
                 <h2 className='text-center mb-4'>Sign Up</h2>
                 {error && <Alert variant='danger'>{error}</Alert>}
                 <Form onSubmit={handleSubmit} >
-                        <Form.Group id='email' className='mb-4'>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type='email' ref={emailRef} required />
-                        </Form.Group>
-                        <Form.Group id='password' className='mb-4'>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type='password' ref={passwordRef} required />
-                        </Form.Group>
-                        <Form.Group id='password-confirm' className='mb-4'>
-                            <Form.Label>Password Confirmation</Form.Label>
-                            <Form.Control type='password' ref={passwordConfirmRef} required />
-                        </Form.Group>
-                        <Button disabled={loading} className='w-100' type='submit'>Sign Up</Button>
+                    <Form.Group id='display-name' className='mb-4'>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control type='text' ref={displayNameRef} required />
+                    </Form.Group>
+                    <Form.Group id='email' className='mb-4'>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control type='email' ref={emailRef} required />
+                    </Form.Group>
+                    <Form.Group id='password' className='mb-4'>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type='password' ref={passwordRef} required />
+                    </Form.Group>
+                    <Form.Group id='password-confirm' className='mb-4'>
+                        <Form.Label>Password Confirmation</Form.Label>
+                        <Form.Control type='password' ref={passwordConfirmRef} required />
+                    </Form.Group>
+                    <Button disabled={loading} className='w-100' type='submit'>Sign Up</Button>
                 </Form>
                 </Card.Body>
             </Card>
