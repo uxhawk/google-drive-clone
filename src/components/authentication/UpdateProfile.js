@@ -30,6 +30,9 @@ export default function UpdateProfile() {
         setLoading(true);
         setError('');
 
+        if (displayNameRef.current.value !== currentUser.displayName) {
+            promises.push(updateDisplayName(displayNameRef.current.value));
+        }
         if (emailRef.current.value !== currentUser.email) {
             promises.push(updateEmail(emailRef.current.value));
         }
