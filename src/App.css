@@ -11,3 +11,7 @@ a {
     position: absolute;
     left: -1000px
 }
+
+a.button-link {
+    text-decoration: none;
+}

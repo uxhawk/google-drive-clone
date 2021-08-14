@@ -1,9 +1,12 @@
 import React from 'react';
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import { Navbar, Alignment, Button } from '@blueprintjs/core';
+
+// import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+
+
 
 
 export default function NavBarComponent() {
@@ -20,17 +23,16 @@ export default function NavBarComponent() {
     }
 
     return (
-        <Navbar bg='light' expand='lg' className='px-4'>
-            <Navbar.Brand as={Link} to='/'>
-                UX Hawk Web Drive
-            </Navbar.Brand>
-            <Navbar.Collapse className='justify-content-end'>
-                <Nav>
-                    <Nav.Link as={Link} to='/user'> 
-                        <FontAwesomeIcon icon={faUserCircle} /> {currentUser.displayName}
-                    </Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
+        <Navbar>
+            <Navbar.Group align={Alignment.LEFT}>
+                <Navbar.Heading>UX Hawk Files</Navbar.Heading>
+            </Navbar.Group>
+            <Navbar.Group align={Alignment.RIGHT}>
+                <Link to='/user' className='button-link'>
+                    <Button className="bp3-minimal" icon="user" text="Profile" />
+                </Link>
+                <Button className="bp3-minimal" icon="log-out" text="Sign Out" onClick={handleLogout} />
+            </Navbar.Group>
         </Navbar>
     )
 }
