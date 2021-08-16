@@ -3,7 +3,7 @@
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none!important;
 }
 
 .file-upload {
@@ -12,7 +12,7 @@ a {
     left: -1000px
 }
 
-a.button-link {
+.bp3-button-text {
     text-decoration: none;
 }
 

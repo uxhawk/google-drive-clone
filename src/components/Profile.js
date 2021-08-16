@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import CenteredContainer from './authentication/CenteredContainer';
 import Navbar from '../components/google-drive/Navbar'
 import '@blueprintjs/core/lib/css/blueprint.css';
-import { Card, Elevation, Button, Icon, IconSize } from '@blueprintjs/core';
+import { Card, Elevation, Button, Icon } from '@blueprintjs/core';
 
 
 export default function Dashboard() {

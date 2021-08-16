@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { Form, Card, Button, Alert } from 'react-bootstrap';
+import '@blueprintjs/core/lib/css/blueprint.css';
+import { Card, Elevation, Button, FormGroup, InputGroup, Intent, Callout } from "@blueprintjs/core";
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 import CenteredContainer from './CenteredContainer';
@@ -27,30 +28,62 @@ export default function Login() {
     }
     
     return (
-        <CenteredContainer>
-            <Card>
-                <Card.Body>
-                <h2 className='text-center mb-4'>Sign In</h2>
-                {error && <Alert variant='danger'>{error}</Alert>}
-                <Form onSubmit={handleSubmit} >
-                        <Form.Group id='email' className='mb-4'>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type='email' ref={emailRef} required />
-                        </Form.Group>
-                        <Form.Group id='password' className='mb-4'>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type='password' ref={passwordRef} required />
-                        </Form.Group>
-                        <Button disabled={loading} className='w-100' type='submit'>Sign In</Button>
-                </Form>
-                    <div className='w-100 text-center mt-3'>
-                        <Link to='/forgot-password'>Forgot Password?</Link>
-                    </div>  
-                </Card.Body>
-            </Card>
-            <div className='w-100 text-center mt-2'>
-                Need an account? <Link to='/signup'>Sign Up</Link>
-            </div>  
-        </CenteredContainer>
-    )
+      <CenteredContainer>
+        <Card elevation={Elevation.THREE}>
+          <h2 className="bp3-heading">Sign In</h2>
+          {error && <Callout intent={Intent.DANGER}>{error}</Callout>}
+          <FormGroup
+            labelFor="email-input"
+            labelInfo="(required)"
+            label={"Email"}
+          >
+            <InputGroup
+              id="email-input"
+              placeholder="Enter email"
+              ref={emailRef}
+              leftIcon={"envelope"}
+            />
+          </FormGroup>
+
+          <FormGroup
+            labelFor="password-input"
+            labelInfo="(required)"
+            label={"Password"}
+          >
+            <InputGroup
+              id="password-input"
+              placeholder="Enter password"
+              ref={passwordRef}
+              leftIcon={"lock"}
+              type={'password'}
+            />
+          </FormGroup>
+
+          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+            <Button
+              intent={Intent.SUCCESS}
+              rightIcon={"log-in"}
+              onClick={handleSubmit}
+            //   disabled={loading}
+              loading={loading}
+            >
+              Sign In
+            </Button>
+            <Link to="/forgot-password">
+              <Button rightIcon={"help"} intent={Intent.WARNING}>
+                Forgot Password?
+              </Button>
+            </Link>
+          </div>
+        </Card>
+        <div className="w-100 text-center my-2 mx-2">
+          Need an account?
+          <Link to="/signup">
+            <Button rightIcon={"new-person"} intent={Intent.PRIMARY}>
+              Sign Up
+            </Button>
+          </Link>
+        </div>
+      </CenteredContainer>
+    );
 }
