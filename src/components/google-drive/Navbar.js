@@ -25,7 +25,9 @@ export default function NavBarComponent() {
     return (
         <Navbar>
             <Navbar.Group align={Alignment.LEFT}>
+            <Link to='/' className='button-link navbar-link'>
                 <Navbar.Heading>UX Hawk Files</Navbar.Heading>
+            </Link> 
             </Navbar.Group>
             <Navbar.Group align={Alignment.RIGHT}>
                 <Link to='/user' className='button-link'>

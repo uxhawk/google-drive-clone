@@ -26,3 +26,10 @@ a.button-link {
 .bp3-heading {
     margin: 0px;
 }
+
+.navbar-link {
+    color: #4a4a4a;
+}
+:hover.navbar-link {
+    color: #4a4a4a;
+}
