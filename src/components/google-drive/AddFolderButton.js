@@ -44,29 +44,39 @@ export default function AddFolderButton({ currentFolder }) {
     }
     
     return (
-        <>
-            <Button onClick={openModal} icon={'folder-new'} intent={Intent.SUCCESS} />
-                  
-            <Modal show={open} onHide={closeModal} animation={false}>
-            <Form onSubmit={handleSubmit}>
-                <Modal.Body>
-                    <Form.Group>
-                        <Form.Label>Folder Name</Form.Label>
-                        <Form.Control 
-                        type='text'
-                        ref={folderName}
-                        required
-                        value={name}
-                        onChange={() => setName(folderName.current.value)}
-                        />
-                    </Form.Group>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant='secondary' onClick={closeModal}>Cancel</Button>
-                    <Button variant='success' type='submit'>Add Folder</Button>
-                </Modal.Footer>
-            </Form>
-            </Modal>
-        </>
-    )
+      <>
+        <Button
+          large={true}
+          outlined={false}
+          onClick={openModal}
+          icon={"folder-new"}
+          intent={Intent.SUCCESS}
+        />
+
+        <Modal show={open} onHide={closeModal} animation={false}>
+          <Form onSubmit={handleSubmit}>
+            <Modal.Body>
+              <Form.Group>
+                <Form.Label>Folder Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  ref={folderName}
+                  required
+                  value={name}
+                  onChange={() => setName(folderName.current.value)}
+                />
+              </Form.Group>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={closeModal}>
+                Cancel
+              </Button>
+              <Button variant="success" type="submit">
+                Add Folder
+              </Button>
+            </Modal.Footer>
+          </Form>
+        </Modal>
+      </>
+    );
 }

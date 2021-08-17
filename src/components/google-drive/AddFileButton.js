@@ -1,13 +1,18 @@
-import React, { } from 'react';
+import React, { useRef } from 'react';
 import { storage, database } from '../../firebase';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
 import { useAuth } from '../../contexts/AuthContext';
-import { Button, Intent, label, FileInput, input } from "@blueprintjs/core";
+import { Button, Intent } from "@blueprintjs/core";
 
 
 export default function AddFileButton({ currentFolder }) {
     const { currentUser } = useAuth();
+    const inputFile = useRef(null);
 
+    function handleFileBrowser() {
+        inputFile.current.click();
+    }
+    
     function handleUpload(e) {
         const file = e.target.files[0];
         if (currentFolder == null || file == null) return;
@@ -39,37 +44,20 @@ export default function AddFileButton({ currentFolder }) {
     }
 
     return (
-      //   <>
-      //   <Button
-      //     onClick={handleUpload}
-      //     icon={"cloud-upload"}
-      //     intent={Intent.SUCCESS}
-      //     style={{ marginRight: "10px" }}
-      //   />
-      //     <input type="file" onChange={handleUpload} className="file-upload" />
-      //   </>
-
-      // <FileInput text="Choose file..." onInputChange={handleUpload} />
-
-      
+      <>
         <Button
-          onClick={handleUpload}
+          onClick={handleFileBrowser}
           icon={"cloud-upload"}
           intent={Intent.SUCCESS}
           style={{ marginRight: "10px" }}
-          type='file-input'
-        > 
-        <input type="file"></input>
-        </Button> 
-      
-
-      //   <label className='btn btn-outline-success btn-sm mx-2'>
-
-      //       <input
-      //           type='file'
-      //           onChange={handleUpload}
-      //           className='file-upload'
-      //       />
-      //   </label>
+          large={true}
+        ></Button>
+        <input
+          type="file"
+          ref={inputFile}
+          style={{ display: "none" }}
+          onChange={handleUpload}
+        ></input>
+      </>
     );
 }

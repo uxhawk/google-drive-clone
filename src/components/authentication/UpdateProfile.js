@@ -12,8 +12,7 @@ import {
   Intent,
   Callout,
   Icon,
-  Colors,
-  Divider,
+  Colors
 } from "@blueprintjs/core";
 
 export default function UpdateProfile() {
