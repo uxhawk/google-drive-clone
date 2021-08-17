@@ -10,7 +10,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 
 export default function NavBarComponent() {
-    const { logout, currentUser } = useAuth();
+    const { logout } = useAuth();
 
 
 

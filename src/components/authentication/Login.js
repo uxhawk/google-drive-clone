@@ -1,8 +1,19 @@
 import React, { useRef, useState } from 'react';
 import '@blueprintjs/core/lib/css/blueprint.css';
-import { Card, Elevation, Button, FormGroup, InputGroup, Intent, Callout, Icon, Colors, Divider } from "@blueprintjs/core";
+import {
+  Card,
+  Elevation,
+  Button,
+  FormGroup,
+  InputGroup,
+  Intent,
+  Callout,
+  Icon,
+  Colors,
+  Divider,
+} from "@blueprintjs/core";
 import { useAuth } from '../../contexts/AuthContext';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from "react-router-dom";
 import CenteredContainer from './CenteredContainer';
 
 export default function Login() {
