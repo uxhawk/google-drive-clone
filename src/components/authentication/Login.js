@@ -23,6 +23,24 @@ export default function Login() {
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const history = useHistory();
+    const [disabled, setDisabled] = useState(true);
+
+    var intent = '';
+
+    if (error) {
+       intent=Intent.DANGER;
+    }
+
+    function handleChange() {
+      if (
+        emailRef.current.value !== "" &&
+        passwordRef.current.value !== ""
+      ) {
+        setDisabled(false);
+      } else {
+        setDisabled(true);
+      }
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -62,26 +80,16 @@ export default function Login() {
             labelInfo="(required)"
             label={"Email"}
           >
-            {!error ? (
-              <InputGroup
-                id="email-input"
-                placeholder="Enter email"
-                inputRef={emailRef}
-                leftIcon={"envelope"}
-                disabled={loading}
-                type={"email"}
-              />
-            ) : (
-              <InputGroup
-                id="email-input"
-                placeholder="Enter email"
-                inputRef={emailRef}
-                leftIcon={"envelope"}
-                disabled={loading}
-                type={"email"}
-                intent={Intent.DANGER}
-              />
-            )}
+            <InputGroup
+              id="email-input"
+              placeholder="Enter email"
+              inputRef={emailRef}
+              leftIcon={"envelope"}
+              disabled={loading}
+              type={"email"}
+              intent={intent}
+              onChange={handleChange}
+            />
           </FormGroup>
 
           <FormGroup
@@ -89,24 +97,16 @@ export default function Login() {
             labelInfo="(required)"
             label={"Password"}
           >
-            {!error ? (
-              <InputGroup
-                id="password-input"
-                placeholder="Enter password"
-                inputRef={passwordRef}
-                leftIcon={"lock"}
-                disabled={loading}
-              />
-            ) : (
-              <InputGroup
-                id="password-input"
-                placeholder="Enter password"
-                inputRef={passwordRef}
-                leftIcon={"lock"}
-                disabled={loading}
-                intent={Intent.DANGER}
-              />
-            )}
+            <InputGroup
+              id="password-input"
+              placeholder="Enter password"
+              inputRef={passwordRef}
+              leftIcon={"lock"}
+              disabled={loading}
+              type={"password"}
+              intent={intent}
+              onChange={handleChange}
+            />
           </FormGroup>
 
           <div
@@ -120,7 +120,7 @@ export default function Login() {
               intent={Intent.SUCCESS}
               rightIcon={"log-in"}
               onClick={handleSubmit}
-              //   disabled={loading}
+              disabled={disabled}
               loading={loading}
             >
               Sign In
