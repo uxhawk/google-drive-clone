@@ -1,8 +1,19 @@
 import React, { useRef, useState } from 'react';
-import { Form, Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import CenteredContainer from './CenteredContainer';
+import {
+  Card,
+  Elevation,
+  Button,
+  FormGroup,
+  InputGroup,
+  Intent,
+  Callout,
+  Icon,
+  Colors,
+  Divider,
+} from "@blueprintjs/core";
 
 export default function ForgotPassword() {
     const emailRef = useRef();
@@ -21,33 +32,88 @@ export default function ForgotPassword() {
             await resetPassword(emailRef.current.value);
             setMessage(`Check ${emailRef.current.value} for password reset instructions`);
         } catch {
-            setError(`No account found for ${emailRef.current.value}`)
+            setError(`No account found for ${emailRef.current.value}`);
         }
         setLoading(false);
     }
     
     return (
-        <CenteredContainer>
-            <Card>
-                <Card.Body>
-                <h2 className='text-center mb-4'>Reset Password</h2>
-                {error && <Alert variant='danger'>{error}</Alert>}
-                {message && <Alert variant='success'>{message}</Alert>}
-                <Form onSubmit={handleSubmit} >
-                        <Form.Group id='email' className='mb-4'>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type='email' ref={emailRef} required />
-                        </Form.Group>
-                        <Button disabled={loading} className='w-100' type='submit'>Reset Password</Button>
-                </Form>
-                <div className='w-100 text-center mt-3'>
-                        <Link to='/login'>Login</Link>
-                    </div>
-                </Card.Body>
-            </Card>
-            <div className='w-100 text-center mt-2'>
-                Need an account? <Link to='/signup'>Sign Up</Link>
-            </div>  
-        </CenteredContainer>
-    )
+      <CenteredContainer>
+        <Card elevation={Elevation.THREE}>
+          <div className="profile-edit">
+            <div style={{ display: "inherit", alignItems: "center" }}>
+              <Icon
+                icon={"lock"}
+                size={40}
+                style={{ marginRight: "15px" }}
+                color={Colors.DARK_GRAY5}
+              />
+              <h2 className="bp3-heading">Reset Password</h2>
+            </div>
+          </div>
+          {error && (
+            <Callout intent={Intent.DANGER} style={{ marginBottom: "20px" }}>
+              {error}
+            </Callout>
+          )}
+          {message && (
+            <Callout intent={Intent.SUCCESS} style={{ marginBottom: "20px" }}>
+              {message}
+            </Callout>
+          )}
+
+          <FormGroup
+            labelFor="email-input"
+            labelInfo="(required)"
+            label={"Email"}
+          >
+            <InputGroup
+              id="email-input"
+              placeholder="Enter email"
+              inputRef={emailRef}
+              leftIcon={"envelope"}
+              disabled={loading}
+              type={"email"}
+            />
+          </FormGroup>
+          <Button
+            intent={Intent.WARNING}
+            rightIcon={"lock"}
+            onClick={handleSubmit}
+            loading={loading}
+          >
+            Reset Password
+          </Button>
+
+          <Divider style={{ marginTop: "20px" }} />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: "20px",
+            }}
+          >
+            <Link to="/login">
+              <Button
+                rightIcon={"log-in"}
+                intent={Intent.SUCCESS}
+                loading={loading}
+              >
+                Sign In
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button
+                rightIcon={"new-person"}
+                intent={Intent.SUCCESS}
+                loading={loading}
+              >
+                Sign Up
+              </Button>
+            </Link>
+          </div>
+        </Card>
+      </CenteredContainer>
+    );
 }

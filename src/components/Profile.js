@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import CenteredContainer from './authentication/CenteredContainer';
 import Navbar from '../components/google-drive/Navbar'
 import '@blueprintjs/core/lib/css/blueprint.css';
-import { Card, Elevation, Button, Icon } from '@blueprintjs/core';
+import { Card, Elevation, Button, Icon, Intent } from "@blueprintjs/core";
 
 
 export default function Dashboard() {
@@ -22,7 +22,7 @@ export default function Dashboard() {
                         <h2 className='bp3-heading'>Profile</h2>
                     </div>
                     <Link to='/update-profile' className='button-link'>
-                        <Button className="bp3-minimal" icon="edit" />
+                        <Button intent={Intent.SUCCESS} icon="edit" />
                     </Link>
                 </div>
                 <p><strong>Username: </strong> {currentUser.displayName}</p>
