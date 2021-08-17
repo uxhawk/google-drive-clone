@@ -22,7 +22,7 @@ export default function Signup() {
   const displayNameRef = useRef();
   const { signup, updateDisplayName } = useAuth();
   const [error, setError] = useState('');
-  const [disabled, setDisabled] = useState(true)
+  const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
 

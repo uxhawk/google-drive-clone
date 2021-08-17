@@ -1,23 +1,35 @@
 import React, { useState, useRef } from 'react';
-import { Modal, Form } from 'react-bootstrap';
+// import { Modal, Form,  } from 'react-bootstrap';
 import { database } from '../../firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
-import { Button, Intent } from "@blueprintjs/core";
+import { Button, Intent, Dialog, Classes, FormGroup, InputGroup } from "@blueprintjs/core";
 
 export default function AddFolderButton({ currentFolder }) {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const { currentUser } = useAuth();
     const folderName = useRef();
+    const [disabled, setDisabled] = useState(true);
     
     function openModal() {
-        setOpen(true);
+      setOpen(true);
+      setName("");
     }
 
     function closeModal() {
         setOpen(false);
         setName('');
+        setDisabled(true);
+    }
+
+    function checkDisabled() {
+      if (folderName.current.value === '') {
+        setDisabled(true);
+      } else {
+        setDisabled(false);
+      }
+      
     }
 
     function handleSubmit(e) {
@@ -52,31 +64,49 @@ export default function AddFolderButton({ currentFolder }) {
           icon={"folder-new"}
           intent={Intent.SUCCESS}
         />
-
-        <Modal show={open} onHide={closeModal} animation={false}>
-          <Form onSubmit={handleSubmit}>
-            <Modal.Body>
-              <Form.Group>
-                <Form.Label>Folder Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  ref={folderName}
-                  required
-                  value={name}
-                  onChange={() => setName(folderName.current.value)}
-                />
-              </Form.Group>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={closeModal}>
+        <Dialog
+          icon={"folder-shared-open"}
+          title="Create New Folder"
+          isOpen={open}
+          canEscapeKeyClose={true}
+          canOutsideClickClose={true}
+          onClose={closeModal}
+        >
+          <div className={Classes.DIALOG_BODY}>
+            <FormGroup
+              labelFor="user-name"
+              labelInfo="(required)"
+              label={"Folder Name"}
+            >
+              <InputGroup
+                id="folder-name"
+                placeholder="Enter folder name"
+                inputRef={folderName}
+                leftIcon={"folder-open"}
+                type={"text"}
+                onChange={() => {
+                  setName(folderName.current.value);
+                  checkDisabled();
+                }}
+              />
+            </FormGroup>
+          </div>
+          <div className={Classes.DIALOG_FOOTER}>
+            <div className={Classes.DIALOG_FOOTER_ACTIONS}>
+              <Button rightIcon={"disable"} onClick={closeModal}>
                 Cancel
               </Button>
-              <Button variant="success" type="submit">
-                Add Folder
+              <Button
+                intent={Intent.SUCCESS}
+                rightIcon={"folder-new"}
+                onClick={handleSubmit}
+                disabled={disabled}
+              >
+                Create Folder
               </Button>
-            </Modal.Footer>
-          </Form>
-        </Modal>
+            </div>
+          </div>
+        </Dialog>
       </>
     );
 }
