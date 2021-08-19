@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Link } from 'react-router-dom';
 import CenteredContainer from './CenteredContainer';
+import "@blueprintjs/core/lib/css/blueprint.css";
+
 import {
   Card,
   Elevation,

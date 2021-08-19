@@ -3,7 +3,9 @@ import { Breadcrumb } from 'react-bootstrap';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faHome } from '@fortawesome/free-solid-svg-icons';
+import "@blueprintjs/core/lib/css/blueprint.css";
+
 
 export default function FolderBreadcrumbs({ currentFolder }) {
     let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER];

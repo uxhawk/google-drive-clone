@@ -3,6 +3,8 @@ import { storage, database } from '../../firebase';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button, Intent } from "@blueprintjs/core";
+import "@blueprintjs/core/lib/css/blueprint.css";
+
 
 
 export default function AddFileButton({ currentFolder }) {

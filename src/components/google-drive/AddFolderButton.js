@@ -4,6 +4,8 @@ import { database } from '../../firebase';
 import { useAuth } from '../../contexts/AuthContext';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
 import { Button, Intent, Dialog, Classes, FormGroup, InputGroup } from "@blueprintjs/core";
+import "@blueprintjs/core/lib/css/blueprint.css";
+
 
 export default function AddFolderButton({ currentFolder }) {
     const [open, setOpen] = useState(false);

@@ -1,5 +1,6 @@
-.folder-link {
+.folders, .files {
     padding-right: 1rem;
+    margin-bottom: 20px;
 }
 
 a {
@@ -12,7 +13,7 @@ a {
     left: -1000px
 }
 
-.bp3-button-text {
+.bp3-button-text, .tag-link {
     text-decoration: none;
 }
 

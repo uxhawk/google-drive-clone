@@ -3,6 +3,8 @@
  import { Button } from 'react-bootstrap';
  import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  import { faFolder } from '@fortawesome/free-solid-svg-icons'
+ import "@blueprintjs/core/lib/css/blueprint.css";
+
 
 
  export default function Folder({ folder }) {
