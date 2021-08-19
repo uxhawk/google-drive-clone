@@ -5,8 +5,6 @@ import "@blueprintjs/core/lib/css/blueprint.css";
 import DeleteButton from './DeleteButton';
 import { Tag } from "@blueprintjs/core";
 import "@blueprintjs/core/lib/css/blueprint.css";
-import { Link, Route } from "react-router-dom";
-
 
 export default function File({ file }) {
     return (
