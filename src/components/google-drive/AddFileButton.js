@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { storage, database } from '../../firebase';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
 import { useAuth } from '../../contexts/AuthContext';
-import { Button, Intent } from "@blueprintjs/core";
+import { Button, Intent, ProgressBar, Toast } from "@blueprintjs/core";
 import "@blueprintjs/core/lib/css/blueprint.css";
 
 
@@ -60,6 +60,41 @@ export default function AddFileButton({ currentFolder }) {
           style={{ display: "none" }}
           onChange={handleUpload}
         ></input>
+        {uploadingFiles.length > 0 &&
+          ReactDOM.createPortal(
+            <div
+              style={{
+                position: "absolute",
+                bottom: "1rem",
+                right: "1rem",
+                maxWidth: "250px",
+                marginRight: "50px",
+              }}
+            >
+              {uploadingFiles.map((file) => (
+                // <Toaster key={file.id}>
+                <Toast
+                  onDismiss={() => {
+                    console.log("dismissed");
+                  }}
+                  icon={"cloud-upload"}
+                  key={file.id}
+                  message={
+                    <>
+                      <p>{file.name}</p>
+                      <ProgressBar
+                        intent={Intent.PRIMARY}
+                        animate={true}
+                        value={file.error ? 1 : file.progress}
+                      />
+                    </>
+                  }
+                ></Toast>
+                // </Toaster>
+              ))}
+            </div>,
+            document.body
+          )}
       </>
     );
 }
