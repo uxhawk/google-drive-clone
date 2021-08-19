@@ -8,8 +8,7 @@ import AddFolderButton from './AddFolderButton';
 import AddFileButton from './AddFileButton';
 import { useParams, useLocation } from 'react-router-dom';
 import FolderBreadcrumbs from './FolderBreadcrumbs';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//  import { faHome } from '@fortawesome/free-solid-svg-icons'
+
 
 export default function Dashboard() {
     const {folderId} = useParams();

@@ -1,13 +1,13 @@
 import React from 'react';
-import Signup from './authentication/Signup';
-import Profile from './Profile';
-import Login from '././authentication/Login';
-import { AuthProvider } from '../contexts/AuthContext';
+import Signup from './components/authentication/Signup';
+import Profile from './components/Profile';
+import Login from './components/authentication/Login';
+import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from './authentication/PrivateRoute';
-import ForgotPassword from './authentication/ForgotPassword';
-import UpdateProfile from '././authentication/UpdateProfile';
-import Dashboard from '../components/google-drive/Dashboard';
+import PrivateRoute from './components/authentication/PrivateRoute';
+import ForgotPassword from './components/authentication/ForgotPassword';
+import UpdateProfile from './components/authentication/UpdateProfile';
+import Dashboard from './components/google-drive/Dashboard';
 
 function App() {
   return (

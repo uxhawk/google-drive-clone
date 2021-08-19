@@ -3,11 +3,33 @@
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none!important;
 }
 
 .file-upload {
     opacity: 0;
     position: absolute;
     left: -1000px
+}
+
+.bp3-button-text {
+    text-decoration: none;
+}
+
+.profile-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.bp3-heading {
+    margin: 0px;
+}
+
+.navbar-link {
+    color: #4a4a4a;
+}
+:hover.navbar-link {
+    color: #4a4a4a;
 }

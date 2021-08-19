@@ -1,14 +1,18 @@
-import React, { } from 'react';
-// import { Button, Modal, Form } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
+import React, { useRef } from 'react';
 import { storage, database } from '../../firebase';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
 import { useAuth } from '../../contexts/AuthContext';
+import { Button, Intent } from "@blueprintjs/core";
+
 
 export default function AddFileButton({ currentFolder }) {
     const { currentUser } = useAuth();
+    const inputFile = useRef(null);
 
+    function handleFileBrowser() {
+        inputFile.current.click();
+    }
+    
     function handleUpload(e) {
         const file = e.target.files[0];
         if (currentFolder == null || file == null) return;
@@ -40,13 +44,20 @@ export default function AddFileButton({ currentFolder }) {
     }
 
     return (
-        <label className='btn btn-outline-success btn-sm mx-2'>
-            <FontAwesomeIcon icon={faFileUpload} />
-            <input 
-                type='file' 
-                onChange={handleUpload} 
-                className='file-upload'
-            />
-        </label>
-    )
+      <>
+        <Button
+          onClick={handleFileBrowser}
+          icon={"cloud-upload"}
+          intent={Intent.SUCCESS}
+          style={{ marginRight: "10px" }}
+          large={true}
+        ></Button>
+        <input
+          type="file"
+          ref={inputFile}
+          style={{ display: "none" }}
+          onChange={handleUpload}
+        ></input>
+      </>
+    );
 }
