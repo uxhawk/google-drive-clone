@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { storage, database } from '../../firebase';
+import ReactDOM from 'react-router-dom';
 import { ROOT_FOLDER } from '../../hooks/useFolder';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button, Intent, ProgressBar, Toast } from "@blueprintjs/core";
@@ -10,6 +11,8 @@ import "@blueprintjs/core/lib/css/blueprint.css";
 export default function AddFileButton({ currentFolder }) {
     const { currentUser } = useAuth();
     const inputFile = useRef(null);
+        const [uploadingFiles, setUploadingFiles] = useState([]);
+
 
     function handleFileBrowser() {
         inputFile.current.click();
