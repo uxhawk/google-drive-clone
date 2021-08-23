@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Intent } from "@blueprintjs/core";
+import { Button } from "@blueprintjs/core";
 import { db } from "../../firebase";
 import "@blueprintjs/core/lib/css/blueprint.css";
 
-export default function DeleteButton({file}) {
+export default function DeleteFileButton({file}) {
     // const collectionRef = database.files;
     // const fileRef = collectionRef.where("file_url", "==", file.url);
     // const fileRef = db
@@ -21,7 +21,6 @@ export default function DeleteButton({file}) {
             
             querySnapshot.forEach((doc) => {
                 doc.ref.delete();
-                console.log("deleted file");
             })
         }).catch((e) => {
             console.error(e);
