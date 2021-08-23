@@ -11,6 +11,7 @@ import {
   Colors,
   Divider,
 } from '@blueprintjs/core';
+import "@blueprintjs/core/lib/css/blueprint.css";
 import { useAuth } from '../../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 import CenteredContainer from './CenteredContainer';

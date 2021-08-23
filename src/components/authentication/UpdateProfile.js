@@ -3,6 +3,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 import CenteredContainer from './CenteredContainer';
 import Navbar from '../google-drive/Navbar';
+import "@blueprintjs/core/lib/css/blueprint.css";
+
 import {
   Card,
   Elevation,

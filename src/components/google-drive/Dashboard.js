@@ -8,6 +8,8 @@ import AddFolderButton from './AddFolderButton';
 import AddFileButton from './AddFileButton';
 import { useParams, useLocation } from 'react-router-dom';
 import FolderBreadcrumbs from './FolderBreadcrumbs';
+import "@blueprintjs/core/lib/css/blueprint.css";
+
 
 
 export default function Dashboard() {
@@ -16,47 +18,61 @@ export default function Dashboard() {
     const { folder, childFolders, childFiles } = useFolder(folderId, state.folder);
 
     return (
-        <>
-            <Navbar />
-            <Container fluid className='p-4'>
-                <div className='d-flex align-items-center mb-3'>
-                    <FolderBreadcrumbs  currentFolder={folder}/>
-                    <AddFileButton currentFolder={folder} />   
-                    <AddFolderButton currentFolder={folder} />   
+      <>
+        <Navbar />
+        <Container fluid className="p-4">
+          <div className="d-flex align-items-center mb-3">
+            <FolderBreadcrumbs currentFolder={folder} />
+            <AddFileButton currentFolder={folder} />
+            <AddFolderButton currentFolder={folder} />
+          </div>
+
+          {/* print child folders */}
+          {folder.name === "Home" && childFolders.length > 0 ? (
+            <h3 className={"bp3-heading"} style={{ marginBottom: "10px" }}>
+              Folders
+            </h3>
+          ) : (
+            <></>
+          )}
+
+          {childFolders.length > 0 && (
+            <div className="d-flex flex-wrap">
+              {childFolders.map((childFolder) => (
+                <div
+                  key={childFolder.id}
+                  style={{ maxWidth: "350px" }}
+                  className="folders"
+                >
+                  <Folder folder={childFolder} />
                 </div>
+              ))}
+            </div>
+          )}
 
-                {/* print child folders */}
-                {childFolders.length > 0 && (
-                    <div className='d-flex flex-wrap'>
-                        {childFolders.map(childFolder => (
-                            <div
-                                key={childFolder.id}
-                                style={{ maxWidth: '250px' }}
-                                className='folder-link'
-                            >
-                                <Folder folder={childFolder} className='folder-link'/>
-                            </div>
-                        ))}
-                    </div>
-                )}
+          {childFolders.length > 0 && childFiles.length > 0 && (
+            <>
+              <h3 className={"bp3-heading"} style={{ marginBottom: "10px" }}>
+                Files
+              </h3>
+            </>
+          )}
 
-                {childFolders.length > 0 && childFiles.length > 0 && <hr />}
-
-                {/* print child files */}
-                {childFiles.length > 0 && (
-                <div className='d-flex flex-wrap'>
-                    {childFiles.map(childFile => (
-                        <div
-                            key={childFile.id}
-                            style={{ maxWidth: '250px' }}
-                            className='folder-link'
-                        >
-                            <File file={childFile} className='folder-link'/>
-                        </div>
-                    ))}
+          {/* print child files */}
+          {childFiles.length > 0 && (
+            <div className="d-flex flex-wrap">
+              {childFiles.map((childFile) => (
+                <div
+                  key={childFile.id}
+                  // style={{ maxWidth: "350px" }}
+                  className="files"
+                >
+                  <File file={childFile} />
                 </div>
-                )}
-            </Container>
-        </>
-    )
+              ))}
+            </div>
+          )}
+        </Container>
+      </>
+    );
 }
