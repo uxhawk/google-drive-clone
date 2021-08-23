@@ -28,14 +28,6 @@ export default function Dashboard() {
           </div>
 
           {/* print child folders */}
-          {folder.name === "Home" && childFolders.length > 0 ? (
-            <h3 className={"bp3-heading"} style={{ marginBottom: "10px" }}>
-              Folders
-            </h3>
-          ) : (
-            <></>
-          )}
-
           {childFolders.length > 0 && (
             <div className="d-flex flex-wrap">
               {childFolders.map((childFolder) => (
