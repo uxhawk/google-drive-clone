@@ -11,15 +11,6 @@
 
  export default function Folder({ folder }) {
      return (
-       //  <Button
-       // to={{
-       //     pathname: `/folder/${folder.id}`,
-       //     state: { folder: folder }
-       // }}
-       //      variant='outline-dark' className='text-truncate w-100 m-0' as={Link} >
-       //     <FontAwesomeIcon icon={faFolder} style={{marginRight: '10px'}} />
-       //     {folder.name}
-       //  </Button>
        <Tag minimal={true} interactive={true} large>
          <Icon
            icon={"folder-open"}

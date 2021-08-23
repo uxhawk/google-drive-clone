@@ -33,7 +33,6 @@ export default function Dashboard() {
               {childFolders.map((childFolder) => (
                 <div
                   key={childFolder.id}
-                  style={{ maxWidth: "350px" }}
                   className="folders"
                 >
                   <Folder folder={childFolder} />
@@ -56,7 +55,6 @@ export default function Dashboard() {
               {childFiles.map((childFile) => (
                 <div
                   key={childFile.id}
-                  // style={{ maxWidth: "350px" }}
                   className="files"
                 >
                   <File file={childFile} />

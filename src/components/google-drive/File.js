@@ -6,7 +6,6 @@ import "@blueprintjs/core/lib/css/blueprint.css";
 
 export default function File({ file }) {
     return (
-      // eslint-disable-next-line react/jsx-no-target-blank
       <Tag minimal={true} interactive={true} large>
         <Icon
           icon={"document"}
